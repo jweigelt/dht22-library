@@ -5,8 +5,8 @@
 * @brief DHT22 sensor control library for Arduino
 */
 
-#ifndef _DHTSENSOR_H
-#define _DHTSENSOR_H
+#ifndef _DHT22_H
+#define _DHT22_H
 
 //Read timeout (us)
 #define DHT22_TIMEOUT 255
@@ -50,4 +50,4 @@ private:
 	bool waitForPin(uint8_t state);
 	bool readByte(uint8_t* buf);
 };
-#endif /* _DHTSENSOR_H */
+#endif /* _DHT22_H */

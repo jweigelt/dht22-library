@@ -45,14 +45,21 @@ bool DHT22::update()
 	 * - 16bit int temperature (°C x 10)
 	 * - 8 bit int checksum
 	 */
-	uint8_t csum;
+	uint8_t csum, csumc;
 	if(!readByte(((uint8_t*)&lastHumidity) + 1)) return false;
 	if (!readByte((uint8_t*)&lastHumidity)) return false;
 	if (!readByte(((uint8_t*)&lastTemperature) + 1)) return false;
 	if (!readByte((uint8_t*)&lastTemperature)) return false;
 	if (!readByte(&csum)) return false;
 
-	uint8_t csumc = (uint16_t)lastHumidity + (uint16_t)lastTemperature;
+	/*
+	* The checksum is calculated by summing all data bytes
+	* (Only check 8 LSB)
+	*/
+	csumc = *((uint8_t*)&lastHumidity)
+		  + *((uint8_t*)&lastHumidity + 1)
+		  + *((uint8_t*)&lastTemperature)
+		  + *((uint8_t*)&lastTemperature + 1);
 
 	/*
 	 * Sign bit:
@@ -64,10 +71,6 @@ bool DHT22::update()
 		lastTemperature ^= ~(1 << 15);
 	}
 
-	/*
-	 * The checksum is calculated by adding temperature and humidity.
-	 * (Only check 8 LSB)
-	 */
 	return (csumc == csum);
 }
 
