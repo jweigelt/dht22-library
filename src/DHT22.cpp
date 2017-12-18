@@ -46,11 +46,11 @@ bool DHT22::update()
 	 * - 8 bit int checksum
 	 */
 	uint8_t csum;
-	readByte(((uint8_t*)&lastHumidity) + 1);
-	readByte((uint8_t*)&lastHumidity);
-	readByte(((uint8_t*)&lastTemperature) + 1);
-	readByte((uint8_t*)&lastTemperature);
-	readByte(&csum);
+	if(!readByte(((uint8_t*)&lastHumidity) + 1)) return false;
+	if (!readByte((uint8_t*)&lastHumidity)) return false;
+	if (!readByte(((uint8_t*)&lastTemperature) + 1)) return false;
+	if (!readByte((uint8_t*)&lastTemperature)) return false;
+	if (!readByte(&csum)) return false;
 
 	uint8_t csumc = (uint16_t)lastHumidity + (uint16_t)lastTemperature;
 
