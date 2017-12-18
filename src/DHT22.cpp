@@ -65,7 +65,7 @@ bool DHT22::update()
 	 * Sign bit:
 	 * - MSB 1 -> negative, MSB 0 -> positive
 	 * - the databits do not get inverted for negative values
-	 *   (which means they've to be inverted match C-Style int format)
+	 *   (which means they have to be inverted to match stdint format)
 	 */
 	if ((lastTemperature & (1 << 15)) > 0) {
 		lastTemperature ^= ~(1 << 15);

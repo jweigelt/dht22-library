@@ -18,24 +18,24 @@ class DHT22
 public:
 	/**
 	* @brief Creates a new instance of DHT22
-	* @param pin Arduino pin the sensor is connected to
+	* @param pin Arduino pin the sensor's D0 line is connected to
 	*/
 	DHT22(int pin);
 
 	/**
 	* @brief Retrieves data from the sensor
-	* @note The sensor will only provide fresh data every 1~2 seconds this this function should only be called every ~2s
+	* @note The sensor will only provide fresh data every 1~2 seconds thus this function should only be called every ~2s
 	*/
 	bool update();
 
 	/**
-	* @brief Gets the last (cached) Temperature reading from the sensor
-	* @note Make sure that was called and update() suceeded to ensure that valid data is returned.
+	* @brief Gets the last (cached) temperature reading
+	* @note Make sure that update() suceeded to ensure that valid data is returned.
 	*/
 	int16_t lastT();
 
 	/**
-	* @brief Gets the last (cached) rel. Humidity reading from the sensor
+	* @brief Gets the last (cached) rel. humidity reading
 	* @note Make sure that update() suceeded to ensure that valid data is returned.
 	*/
 	int16_t lastH();
