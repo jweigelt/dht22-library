@@ -28,7 +28,7 @@ void loop() {
 		/*
 		* lastH() and lastT() will return cached values aquired during the last update
 		* rel. Humidity is returned in percent, multiplied by 10 (50.4% would be 504)
-		* Temperature is returned in °C, multiplied by 10 (21.5°C would be 215)
+		* Temperature is returned in Â°C, multiplied by 10 (21.5Â°C would be 215)
 		*/
 		Serial.printf("RH: %i, T: %i \r\n", dht.lastH(), dht.lastT());
 	}
